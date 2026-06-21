@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #D4AF37;
+  --gold-light: #E8C84A;
+  --gold-muted: #8B7536;
+  --obsidian: #0F0F08;
+  --obsidian-card: #1A1A0E;
+  --obsidian-hover: #222215;
+  --obsidian-border: #2C2C1A;
+  --cream: #F5F0E8;
+  --cream-muted: #C8BFA8;
+  --cream-dim: #9A8F78;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--obsidian);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--obsidian-card);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--obsidian-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-muted);
+}
+
+/* Gold shimmer for high-probability cards */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--obsidian-border) 0%,
+    var(--gold-muted) 50%,
+    var(--obsidian-border) 100%
+  );
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+}
+
+/* High probability glow */
+.high-prob-glow {
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.3),
+              0 4px 20px rgba(212, 175, 55, 0.08);
+}
+
+.high-prob-glow:hover {
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.5),
+              0 4px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* Underdog badge pulse */
+@keyframes underdogPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.underdog-pulse {
+  animation: underdogPulse 2s ease-in-out infinite;
+}
+
+/* Edge bar animation */
+@keyframes edgeFill {
+  from { width: 0%; }
+  to { width: var(--edge-width); }
+}
+
+.edge-bar {
+  animation: edgeFill 0.8s ease-out forwards;
+}
+
+/* Probability ring */
+.prob-ring {
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+/* Table rows */
+.bet-row {
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.bet-row:hover {
+  background-color: var(--obsidian-hover);
+}
+
+/* Tab active indicator */
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* Number formatting */
+.font-mono-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
